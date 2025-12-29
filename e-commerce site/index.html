@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .inter-font {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: #f7fafc;
+        }
+        .product-card, #cart-modal > div, #message-modal > div, header {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="inter-font min-h-screen p-4">
+    <div class="max-w-7xl mx-auto">
+
+        <header class="flex justify-between items-center py-4 px-6 mb-6 shadow-md rounded-xl">
+    <div class="text-xl font-bold text-gray-800">
+        E-Commerce Site
+    </div>
+    <div class="flex items-center space-x-4">
+        <button id="cart-toggle" class="relative p-2 rounded-full text-gray-800 hover:bg-gray-200 transition duration-150">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">0</span>
+        </button>
+    </div>
+</header>
+
+        <main id="main-content">
+            
+            <section id="filter-bar" class="p-4 rounded-xl shadow-lg mb-6 border border-gray-200 bg-white">
+                <div class="md:flex md:space-x-4 space-y-3 md:space-y-0 items-center">
+                    
+                    <div class="flex-grow">
+                        <input type="text" id="search-input" placeholder="Search products..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg">
+                    </div>
+                    
+                    <div class="flex-shrink-0 md:w-48">
+                        <label for="category-select" class="block text-xs font-medium text-gray-500 mb-1">Category</label>
+                        <select id="category-select" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div id="loading-spinner" class="col-span-full text-center py-20">
+                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+                    <p class="text-gray-500 mt-3">Loading products...</p>
+                </div>
+            </div>
+        </main>
+        
+        <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition-opacity duration-300 opacity-0" aria-modal="true" role="dialog">
+            <div class="p-6 rounded-xl shadow-2xl w-full max-w-lg m-4 transition-all transform duration-300 translate-y-full bg-white" id="cart-content">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Shopping Cart</h2>
+                
+                <div id="cart-items" class="max-h-72 overflow-y-auto mb-4 divide-y divide-gray-100 border-t border-b border-gray-200">
+                    <p id="empty-cart-message" class="text-center text-gray-500 italic py-4 hidden">Your cart is empty.</p>
+                </div>
+
+                <div class="space-y-3 p-4 bg-gray-50 rounded-lg">
+                    <div class="flex justify-between font-bold text-xl">
+                        <span>Total:</span>
+                        <span id="total-amount" class="text-blue-600">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between space-x-4 mt-6">
+                    <button id="checkout-btn" class="flex-1 bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition">Checkout</button>
+                    <button id="close-cart-btn" class="flex-1 bg-gray-300 text-gray-800 p-3 rounded-lg font-semibold hover:bg-gray-400 transition">Close</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="message-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
+            <div class="p-6 rounded-xl shadow-2xl w-full max-w-xs m-4 bg-white">
+                <p id="message-text" class="text-lg font-medium text-gray-800 text-center mb-4"></p>
+                <button onclick="closeMessageModal()" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"> </script>
+</body>
+</html>
