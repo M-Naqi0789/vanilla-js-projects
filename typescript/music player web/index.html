@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonicStore // Digital Vinyl</title>
+    <style>
+        :root {
+            --bg: #09090b;
+            --card-bg: #18181b;
+            --accent: #10b981; /* Music Green */
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-bottom: 100px; /* Space for player bar */
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+
+        /* --- Grid --- */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .track-card {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .track-card:hover { background: #27272a; }
+
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #3f3f46;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .track-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+        .track-artist { font-size: 0.85rem; color: var(--text-dim); }
+
+        /* --- Global Player Bar --- */
+        .player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #27272a;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            justify-content: space-between;
+        }
+
+        .current-info { display: flex; align-items: center; gap: 15px; width: 30%; }
+        .now-playing-art { width: 56px; height: 56px; border-radius: 4px; background: #3f3f46; }
+
+        .controls { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 40%; }
+        .btns { display: flex; gap: 20px; align-items: center; }
+        
+        button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .play-btn {
+            background: white;
+            color: black;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: #3f3f46;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 30%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Sonic<span>Store</span></div>
+        <div class="user-nav">Cart (0)</div>
+    </header>
+
+    <main class="store-grid" id="track-list">
+        <div class="track-card">
+            <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300" class="album-art">
+            <div class="track-title">Midnight City</div>
+            <div class="track-artist">Synthwave Pro • $1.99</div>
+        </div>
+        <div class="track-card">
+            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=300" class="album-art">
+            <div class="track-title">Ocean Breeze</div>
+            <div class="track-artist">Lofi Girl • $0.99</div>
+        </div>
+        <div class="track-card">
+            <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?w=300" class="album-art">
+            <div class="track-title">Deep Bass</div>
+            <div class="track-artist">Techno King • $2.99</div>
+        </div>
+    </main>
+
+    <div class="player-bar">
+        <div class="current-info">
+            <div class="now-playing-art"></div>
+            <div>
+                <div class="track-title" id="player-title">Select a track</div>
+                <div class="track-artist" id="player-artist">Ready to play</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="btns">
+                <button>⏮</button>
+                <button class="play-btn">▶</button>
+                <button>⏭</button>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div style="width: 30%; text-align: right;">
+            <button>Vol</button>
+        </div>
+    </div>
+
+    <script src="dist/index.js"></script>
+</body>
+</html>
