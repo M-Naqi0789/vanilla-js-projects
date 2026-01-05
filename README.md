@@ -1,2 +1,2 @@
-# vanilla-js-projects
-POCs focused on JS fundamentals with AI-assisted UI design
+# vanilla-projects
+POCs focused on JS and TS fundamentals with AI-assisted UI design
