@@ -2,175 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo app</title>
+    <title>Todolist app</title>
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --danger: #ef4444;
-            --success: #22c55e;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            padding-top: 100px;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-        }
-
-        header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            color: var(--primary);
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-            background: var(--card-bg);
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            border: none;
-            padding: 12px 16px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        button#add-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        button#add-btn:hover {
-            background: var(--primary-hover);
-        }
-
-        #todo-list {
-            list-style: none;
-        }
-
-        .todo-item {
-            background: var(--card-bg);
-            margin-bottom: 10px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: transform 0.1s;
-        }
-
-        .todo-item:hover {
-            transform: translateX(4px);
-        }
-
-        .todo-item.completed span {
-            text-decoration: line-through;
-            color: var(--text-muted);
-        }
-
-        .todo-item span {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        .checkbox {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .delete-btn {
-            background: transparent;
-            color: var(--text-muted);
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 4px;
-            line-height: 1;
-        }
-
-        .delete-btn:hover {
-            color: var(--danger);
-        }
-
-        .stats {
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-        }
+        body { font-family: system-ui; background: #f8fafc; display: flex; justify-content: center; padding: 40px; }
+        .card { background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 350px; }
+        .flex { display: flex; gap: 8px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #f1f5f9; }
+        li.completed span { text-decoration: line-through; color: #94a3b8; }
+        span { cursor: pointer; flex: 1; }
+        .edit { color: #2563eb; margin-right: 8px; cursor: pointer; border: none; background: none; }
+        .del { color: #ef4444; cursor: pointer; border: none; background: none; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <header>
-            <h1>Todo App</h1>
-        </header>
-
-        <div class="input-group">
-            <input type="text" id="todo-input" placeholder="What needs to be done?" autofocus>
-            <button id="add-btn">Add</button>
+    <div class="card">
+        <h2>My Tasks</h2>
+        <div class="flex">
+            <input type="text" id="todo-input" placeholder="What's next?">
+            <button id="add-btn" style="background:#2563eb; color:white; border:none; padding:10px; border-radius:6px; cursor:pointer;">Add</button>
         </div>
-
-        <ul id="todo-list">
-            <li class="todo-item">
-                <input type="checkbox" class="checkbox">
-                <span>Master TypeScript interfaces</span>
-                <button class="delete-btn">&times;</button>
-            </li>
-        </ul>
-
-        <div class="stats">
-            <span id="items-left">0 items left</span>
-            <span id="clear-completed" style="cursor:pointer">Clear Completed</span>
-        </div>
+        <ul id="todo-list"></ul>
     </div>
-
-    <script src="dist/index.js"></script>
+    <script src="dist/index.js" type="module"></script>
 </body>
 </html>
